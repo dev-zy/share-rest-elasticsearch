@@ -309,9 +309,11 @@ public class RestElasticsearch {
 				if(between!=null&&!between.isEmpty()){
 					Object start = between.get(0);
 					Object end = between.size()>1?between.get(1):null;
+					start = start!=null&&start instanceof Date?((Date)start).getTime():start;
+					end = end!=null&&end instanceof Date?((Date)end).getTime():end;
 					if(start!=null&&end!=null){
-						Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-						Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
+						double starttime = Double.valueOf(start.toString());
+						double endtime = Double.valueOf(end.toString());
 						if(starttime>endtime){
 							Object temp = start;
 							start = end;
@@ -337,7 +339,7 @@ public class RestElasticsearch {
 		if(StringUtil.isEmpty(indexs))indexs="_all";
 		pageNo=pageNo<1?1:pageNo;
 		pageSize=pageSize<1?10:pageSize;
-		String uri = "/"+indexs+(StringUtil.isEmpty(types)?"":"/"+types)+"/_search?pretty&size="+pageSize+"&from"+(pageNo-1)*pageSize;
+		String uri = "/"+indexs+(StringUtil.isEmpty(types)?"":"/"+types)+"/_search?pretty&size="+pageSize+"&from="+(pageNo-1)*pageSize;
 		List<JSONObject> must_matchs = new ArrayList<JSONObject>();
 		List<JSONObject> should_matchs = new ArrayList<JSONObject>();
 		List<JSONObject> must_not_matchs = new ArrayList<JSONObject>();
@@ -434,9 +436,11 @@ public class RestElasticsearch {
 				if(between!=null&&!between.isEmpty()){
 					Object start = between.get(0);
 					Object end = between.size()>1?between.get(1):null;
+					start = start!=null&&start instanceof Date?((Date)start).getTime():start;
+					end = end!=null&&end instanceof Date?((Date)end).getTime():end;
 					if(start!=null&&end!=null){
-						Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-						Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
+						double starttime = Double.valueOf(start.toString());
+						double endtime = Double.valueOf(end.toString());
 						if(starttime>endtime){
 							Object temp = start;
 							start = end;
@@ -466,7 +470,7 @@ public class RestElasticsearch {
 		if(StringUtil.isEmpty(indexs))indexs="_all";
 		pageNo=pageNo<1?1:pageNo;
 		pageSize=pageSize<1?10:pageSize;
-		String uri = "/"+indexs+(StringUtil.isEmpty(types)?"":"/"+types)+"/_search?pretty&size="+pageSize+"&from"+(pageNo-1)*pageSize;
+		String uri = "/"+indexs+(StringUtil.isEmpty(types)?"":"/"+types)+"/_search?pretty&size="+pageSize+"&from="+(pageNo-1)*pageSize;
 		List<JSONObject> must_matchs = new ArrayList<JSONObject>();
 		List<JSONObject> should_matchs = new ArrayList<JSONObject>();
 		List<JSONObject> must_not_matchs = new ArrayList<JSONObject>();
@@ -563,9 +567,11 @@ public class RestElasticsearch {
 				if(between!=null&&!between.isEmpty()){
 					Object start = between.get(0);
 					Object end = between.size()>1?between.get(1):null;
+					start = start!=null&&start instanceof Date?((Date)start).getTime():start;
+					end = end!=null&&end instanceof Date?((Date)end).getTime():end;
 					if(start!=null&&end!=null){
-						Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-						Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
+						double starttime = Double.valueOf(start.toString());
+						double endtime = Double.valueOf(end.toString());
 						if(starttime>endtime){
 							Object temp = start;
 							start = end;
@@ -713,9 +719,11 @@ public class RestElasticsearch {
 				if(between!=null&&!between.isEmpty()){
 					Object start = between.get(0);
 					Object end = between.size()>1?between.get(1):null;
+					start = start!=null&&start instanceof Date?((Date)start).getTime():start;
+					end = end!=null&&end instanceof Date?((Date)end).getTime():end;
 					if(start!=null&&end!=null){
-						Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-						Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
+						double starttime = Double.valueOf(start.toString());
+						double endtime = Double.valueOf(end.toString());
 						if(starttime>endtime){
 							Object temp = start;
 							start = end;
@@ -740,7 +748,7 @@ public class RestElasticsearch {
 		if(StringUtil.isEmpty(indexs))indexs="_all";
 		pageNo=pageNo<1?1:pageNo;
 		pageSize=pageSize<1?10:pageSize;
-		String uri = "/"+indexs+(StringUtil.isEmpty(types)?"":"/"+types)+"/_search?pretty&size="+pageSize+"&from"+(pageNo-1)*pageSize;
+		String uri = "/"+indexs+(StringUtil.isEmpty(types)?"":"/"+types)+"/_search?pretty&size="+pageSize+"&from="+(pageNo-1)*pageSize;
 		List<JSONObject> must_terms = new ArrayList<JSONObject>();
 		List<JSONObject> should_terms = new ArrayList<JSONObject>();
 		List<JSONObject> must_not_terms = new ArrayList<JSONObject>();
@@ -837,9 +845,11 @@ public class RestElasticsearch {
 				if(between!=null&&!between.isEmpty()){
 					Object start = between.get(0);
 					Object end = between.size()>1?between.get(1):null;
+					start = start!=null&&start instanceof Date?((Date)start).getTime():start;
+					end = end!=null&&end instanceof Date?((Date)end).getTime():end;
 					if(start!=null&&end!=null){
-						Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-						Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
+						double starttime = Double.valueOf(start.toString());
+						double endtime = Double.valueOf(end.toString());
 						if(starttime>endtime){
 							Object temp = start;
 							start = end;

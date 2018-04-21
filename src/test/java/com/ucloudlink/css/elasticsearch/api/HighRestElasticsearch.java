@@ -252,11 +252,12 @@ public class HighRestElasticsearch {
 					if(!StringUtil.isEmpty(field)&&!StringUtil.isEmpty(value)){
 						if(value.startsWith("[")&&value.endsWith("]")){
 							BoolQueryBuilder child = QueryBuilders.boolQuery();
-							List<String> values = JSON.parseArray(value, String.class);
-							for (String _value : values) {
-								if(!_value.matches(regex)){
-									child.should(QueryBuilders.matchQuery(field, value));
+							List<Object> values = JSON.parseArray(value, Object.class);
+							for (Object _value : values) {
+								if(_value instanceof String && ((String)_value).matches(regex)){
+									continue;
 								}
+								child.should(QueryBuilders.matchQuery(field, value));
 							}
 							boolquery.must(child);
 						}else{
@@ -265,7 +266,7 @@ public class HighRestElasticsearch {
 							}
 						}
 					}
-					highlight.field(field);
+					if(text instanceof String)highlight.field(field);
 				}
 			}
 			if(should!=null&&should.size()>0){
@@ -278,11 +279,12 @@ public class HighRestElasticsearch {
 					if(!StringUtil.isEmpty(field)&&!StringUtil.isEmpty(value)){
 						if(value.startsWith("[")&&value.endsWith("]")){
 							BoolQueryBuilder child = QueryBuilders.boolQuery();
-							List<String> values = JSON.parseArray(value, String.class);
-							for (String _value : values) {
-								if(!_value.matches(regex)){
-									child.should(QueryBuilders.matchQuery(field, value));
+							List<Object> values = JSON.parseArray(value, Object.class);
+							for (Object _value : values) {
+								if(_value instanceof String && ((String)_value).matches(regex)){
+									continue;
 								}
+								child.should(QueryBuilders.matchQuery(field, value));
 							}
 							boolquery.should(child);
 						}else{
@@ -291,7 +293,7 @@ public class HighRestElasticsearch {
 							}
 						}
 					}
-					highlight.field(field);
+					if(text instanceof String)highlight.field(field);
 				}
 			}
 			if(must_not!=null&&must_not.size()>0){
@@ -304,11 +306,12 @@ public class HighRestElasticsearch {
 					if(!StringUtil.isEmpty(field)&&!StringUtil.isEmpty(value)){
 						if(value.startsWith("[")&&value.endsWith("]")){
 							BoolQueryBuilder child = QueryBuilders.boolQuery();
-							List<String> values = JSON.parseArray(value, String.class);
-							for (String _value : values) {
-								if(!_value.matches(regex)){
-									child.should(QueryBuilders.matchQuery(field, value));
+							List<Object> values = JSON.parseArray(value, Object.class);
+							for (Object _value : values) {
+								if(_value instanceof String && ((String)_value).matches(regex)){
+									continue;
 								}
+								child.should(QueryBuilders.matchQuery(field, value));
 							}
 							boolquery.mustNot(child);
 						}else{
@@ -317,7 +320,7 @@ public class HighRestElasticsearch {
 							}
 						}
 					}
-					highlight.field(field);
+					if(text instanceof String)highlight.field(field);
 				}
 			}
 			if(ranges!=null&&ranges.size()>0){
@@ -329,9 +332,11 @@ public class HighRestElasticsearch {
 					if(between!=null&&!between.isEmpty()){
 						Object start = between.get(0);
 						Object end = between.size()>1?between.get(1):null;
+						start = start!=null&&start instanceof Date?((Date)start).getTime():start;
+						end = end!=null&&end instanceof Date?((Date)end).getTime():end;
 						if(start!=null&&end!=null){
-							Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-							Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
+							double starttime = Double.valueOf(start.toString());
+							double endtime = Double.valueOf(end.toString());
 							if(starttime>endtime){
 								Object temp = start;
 								start = end;
@@ -342,8 +347,8 @@ public class HighRestElasticsearch {
 						if(start!=null){
 							range.gte(start);
 						}
-						if(start!=null){
-							range.lt(start);
+						if(end!=null){
+							range.lt(end);
 						}
 						boolquery.must(range);
 					}
@@ -386,11 +391,12 @@ public class HighRestElasticsearch {
 					if(!StringUtil.isEmpty(field)&&!StringUtil.isEmpty(value)){
 						if(value.startsWith("[")&&value.endsWith("]")){
 							BoolQueryBuilder child = QueryBuilders.boolQuery();
-							List<String> values = JSON.parseArray(value, String.class);
-							for (String _value : values) {
-								if(!_value.matches(regex)){
-									child.should(QueryBuilders.matchQuery(field, value));
+							List<Object> values = JSON.parseArray(value, Object.class);
+							for (Object _value : values) {
+								if(_value instanceof String && ((String)_value).matches(regex)){
+									continue;
 								}
+								child.should(QueryBuilders.matchQuery(field, value));
 							}
 							boolquery.must(child);
 						}else{
@@ -399,7 +405,7 @@ public class HighRestElasticsearch {
 							}
 						}
 					}
-					highlight.field(field);
+					if(text instanceof String)highlight.field(field);
 				}
 			}
 			if(should!=null&&should.size()>0){
@@ -412,11 +418,12 @@ public class HighRestElasticsearch {
 					if(!StringUtil.isEmpty(field)&&!StringUtil.isEmpty(value)){
 						if(value.startsWith("[")&&value.endsWith("]")){
 							BoolQueryBuilder child = QueryBuilders.boolQuery();
-							List<String> values = JSON.parseArray(value, String.class);
-							for (String _value : values) {
-								if(!_value.matches(regex)){
-									child.should(QueryBuilders.matchQuery(field, value));
+							List<Object> values = JSON.parseArray(value, Object.class);
+							for (Object _value : values) {
+								if(_value instanceof String && ((String)_value).matches(regex)){
+									continue;
 								}
+								child.should(QueryBuilders.matchQuery(field, value));
 							}
 							boolquery.should(child);
 						}else{
@@ -425,7 +432,7 @@ public class HighRestElasticsearch {
 							}
 						}
 					}
-					highlight.field(field);
+					if(text instanceof String)highlight.field(field);
 				}
 			}
 			if(must_not!=null&&must_not.size()>0){
@@ -438,11 +445,12 @@ public class HighRestElasticsearch {
 					if(!StringUtil.isEmpty(field)&&!StringUtil.isEmpty(value)){
 						if(value.startsWith("[")&&value.endsWith("]")){
 							BoolQueryBuilder child = QueryBuilders.boolQuery();
-							List<String> values = JSON.parseArray(value, String.class);
-							for (String _value : values) {
-								if(!_value.matches(regex)){
-									child.should(QueryBuilders.matchQuery(field, value));
+							List<Object> values = JSON.parseArray(value, Object.class);
+							for (Object _value : values) {
+								if(_value instanceof String && ((String)_value).matches(regex)){
+									continue;
 								}
+								child.should(QueryBuilders.matchQuery(field, value));
 							}
 							boolquery.mustNot(child);
 						}else{
@@ -451,7 +459,7 @@ public class HighRestElasticsearch {
 							}
 						}
 					}
-					highlight.field(field);
+					if(text instanceof String)highlight.field(field);
 				}
 			}
 			if(ranges!=null&&ranges.size()>0){
@@ -463,9 +471,11 @@ public class HighRestElasticsearch {
 					if(between!=null&&!between.isEmpty()){
 						Object start = between.get(0);
 						Object end = between.size()>1?between.get(1):null;
+						start = start!=null&&start instanceof Date?((Date)start).getTime():start;
+						end = end!=null&&end instanceof Date?((Date)end).getTime():end;
 						if(start!=null&&end!=null){
-							Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-							Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
+							double starttime = Double.valueOf(start.toString());
+							double endtime = Double.valueOf(end.toString());
 							if(starttime>endtime){
 								Object temp = start;
 								start = end;
@@ -476,37 +486,8 @@ public class HighRestElasticsearch {
 						if(start!=null){
 							range.gte(start);
 						}
-						if(start!=null){
-							range.lt(start);
-						}
-						boolquery.must(range);
-					}
-				};
-			}
-			if(ranges!=null&&ranges.size()>0){
-				for (String key : ranges.keySet()) {
-					if(key.matches(regex)){
-						continue;
-					}
-					List<Object> between = ranges.get(key);
-					if(between!=null&&!between.isEmpty()){
-						Object start = between.get(0);
-						Object end = between.size()>1?between.get(1):null;
-						if(start!=null&&end!=null){
-							Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-							Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
-							if(starttime>endtime){
-								Object temp = start;
-								start = end;
-								end = temp;
-							}
-						}
-						RangeQueryBuilder range = QueryBuilders.rangeQuery(key);
-						if(start!=null){
-							range.gte(start);
-						}
-						if(start!=null){
-							range.lt(start);
+						if(end!=null){
+							range.lt(end);
 						}
 						boolquery.must(range);
 					}
@@ -796,9 +777,11 @@ public class HighRestElasticsearch {
 					if(between!=null&&!between.isEmpty()){
 						Object start = between.get(0);
 						Object end = between.size()>1?between.get(1):null;
+						start = start!=null&&start instanceof Date?((Date)start).getTime():start;
+						end = end!=null&&end instanceof Date?((Date)end).getTime():end;
 						if(start!=null&&end!=null){
-							Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-							Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
+							double starttime = Double.valueOf(start.toString());
+							double endtime = Double.valueOf(end.toString());
 							if(starttime>endtime){
 								Object temp = start;
 								start = end;
@@ -809,8 +792,8 @@ public class HighRestElasticsearch {
 						if(start!=null){
 							range.gte(start);
 						}
-						if(start!=null){
-							range.lt(start);
+						if(end!=null){
+							range.lt(end);
 						}
 						boolquery.must(range);
 					}
@@ -930,9 +913,11 @@ public class HighRestElasticsearch {
 					if(between!=null&&!between.isEmpty()){
 						Object start = between.get(0);
 						Object end = between.size()>1?between.get(1):null;
+						start = start!=null&&start instanceof Date?((Date)start).getTime():start;
+						end = end!=null&&end instanceof Date?((Date)end).getTime():end;
 						if(start!=null&&end!=null){
-							Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-							Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
+							double starttime = Double.valueOf(start.toString());
+							double endtime = Double.valueOf(end.toString());
 							if(starttime>endtime){
 								Object temp = start;
 								start = end;
@@ -943,37 +928,8 @@ public class HighRestElasticsearch {
 						if(start!=null){
 							range.gte(start);
 						}
-						if(start!=null){
-							range.lt(start);
-						}
-						boolquery.must(range);
-					}
-				};
-			}
-			if(ranges!=null&&ranges.size()>0){
-				for (String key : ranges.keySet()) {
-					if(key.matches(regex)){
-						continue;
-					}
-					List<Object> between = ranges.get(key);
-					if(between!=null&&!between.isEmpty()){
-						Object start = between.get(0);
-						Object end = between.size()>1?between.get(1):null;
-						if(start!=null&&end!=null){
-							Long starttime = start instanceof Date?((Date)start).getTime():Long.valueOf(start.toString());
-							Long endtime = end instanceof Date?((Date)end).getTime():Long.valueOf(end.toString());
-							if(starttime>endtime){
-								Object temp = start;
-								start = end;
-								end = temp;
-							}
-						}
-						RangeQueryBuilder range = QueryBuilders.rangeQuery(key);
-						if(start!=null){
-							range.gte(start);
-						}
-						if(start!=null){
-							range.lt(start);
+						if(end!=null){
+							range.lt(end);
 						}
 						boolquery.must(range);
 					}
