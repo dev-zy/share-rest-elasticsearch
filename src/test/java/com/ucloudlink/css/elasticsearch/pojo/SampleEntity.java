@@ -9,6 +9,7 @@ public class SampleEntity implements Serializable {
 	private String name;
 	private String imei;
 	private int status;
+	private String email;
 	private String content;
 	private Date begintime;
 	private Date createtime;
@@ -41,6 +42,12 @@ public class SampleEntity implements Serializable {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getContent() {
 		return content;

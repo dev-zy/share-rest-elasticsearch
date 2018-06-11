@@ -2,16 +2,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ucloudlink.css</groupId>
 	<artifactId>css-rest-elasticsearch</artifactId>
-	<version>5.6.8.RELEASE</version>
+	<version>6.2.2.1</version>
 	<name>css-rest-elasticsearch</name>
 	<description>css-rest-elasticsearch</description>
 	<properties>
 		<java.version>1.8</java.version>
-		<project.build.encoding>UTF-8</project.build.encoding>
-		<log4j2.version>2.9.0</log4j2.version>
+		<java.encoding>UTF-8</java.encoding>
+		<log4j2.version>2.9.1</log4j2.version>
+		<logback.version>1.2.3</logback.version>
+		<druid.version>1.1.10</druid.version>
 		<fastjson.version>1.2.47</fastjson.version>
 		<jest.version>5.3.3</jest.version>
-		<elasticsearch.version>5.6.0</elasticsearch.version>
+		<elasticsearch.version>6.2.2</elasticsearch.version>
 	</properties>
 	<licenses>
 		<license>
@@ -36,6 +38,11 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>${logback.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -64,6 +71,7 @@
 						<configuration>
 							<source>${java.version}</source>
 							<target>${java.version}</target>
+							<encoding>${java.encoding}</encoding>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -133,31 +141,27 @@
 							<relocations>
 								<relocation>
 									<pattern>org.apache.logging.log4j</pattern>
-									<shadedPattern>org.elasticsearch.log4j</shadedPattern>
+									<shadedPattern>com.apache.logging.log4j</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>com.fasterxml.jackson</pattern>
-									<shadedPattern>org.elasticsearch.jackson</shadedPattern>
+									<shadedPattern>org.fasterxml.jackson</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>io.netty</pattern>
-									<shadedPattern>org.elasticsearch.io.netty</shadedPattern>
+									<shadedPattern>com.io.netty</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>org.jboss.netty</pattern>
-									<shadedPattern>org.elasticsearch.jboss.netty</shadedPattern>
+									<shadedPattern>com.jboss.netty</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>com.google</pattern>
-									<shadedPattern>org.elasticsearch.guava</shadedPattern>
+									<shadedPattern>com.google.guava</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>com.alibaba.fastjson</pattern>
-									<shadedPattern>org.elasticsearch.fastjson</shadedPattern>
-								</relocation>
-								<relocation>
-									<pattern>org.springframework</pattern>
-									<shadedPattern>com.springframework</shadedPattern>
+									<shadedPattern>org.alibaba.fastjson</shadedPattern>
 								</relocation>
 							</relocations>
 							<transformers>
@@ -170,12 +174,10 @@
 		<!-- </profile>
 	</profiles> -->
 	<distributionManagement>
-		<!-- <repository> <id>central</id> <url>http://central.maven.org/maven2/</url> 
-			</repository> -->
 		<repository>
 			<id>Sonatype</id>
-			<!-- <url>https://oss.sonatype.org/content/repositories/releases/</url> -->
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<url>https://oss.sonatype.org/content/repositories/releases/</url>
+			<!-- <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url> -->
 		</repository>
 		<snapshotRepository>
 			<id>Sonatype</id>

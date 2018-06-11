@@ -18,4 +18,16 @@ public class StringUtil {
 		}
 		return result;
 	}
+	public static String digit(int len){
+		String result="";
+		int standard = 127;//255
+		Random random = new Random();
+		while(result.length()<len){
+			int let = random.nextInt(standard);
+			if(let>32&&let<127){
+				result+=""+Character.toString((char)let);
+			}
+		}
+		return result;
+	}
 }

@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.ucloudlink.css.elasticsearch.api.HighRestElasticsearch;
 import com.ucloudlink.css.elasticsearch.api.RestElasticsearch;
 import com.ucloudlink.css.elasticsearch.pojo.SampleEntity;
@@ -25,6 +28,7 @@ public class ElasticsearchRestTest {
 		obj.setName("title "+let+" "+StringUtil.random(3));
 		obj.setImei("138"+StringUtil.random(8));
 		obj.setArray(new String[]{let,StringUtil.random(2)});
+		obj.setEmail(StringUtil.digit(5)+"@ukelink.com");
 		obj.setBegintime(begintime);
 		obj.setCreatetime(today);
 		obj.setFlag(random.nextInt()%2==0);
@@ -32,8 +36,8 @@ public class ElasticsearchRestTest {
 		obj.setPrice(random.nextDouble());
 		obj.setStatus(200);
 		obj.setType(Integer.valueOf(StringUtil.random(1)));
-		String content = "["+DateUtil.formatDateTimeStr(begintime)+"]"+"Elasticsearch 是一个分布式可扩展的实时搜索和分析引擎。它能帮助你搜索、分析和浏览数据，而往往大家并没有在某个项目一开始就预料到需要这些功能。Elasticsearch 之所以出现就是为了重新赋予硬盘中看似无用的原始数据新的活力。Elasticsearch 为很多世界流行语言提供良好的、简单的、开箱即用的语言分析器集合：阿拉伯语、亚美尼亚语、巴斯克语、巴西语、保加利亚语、加泰罗尼亚语、中文、捷克语、丹麦、荷兰语、英语、芬兰语、法语、加里西亚语、德语、希腊语、北印度语、匈牙利语、印度尼西亚、爱尔兰语、意大利语、日语、韩国语、库尔德语、挪威语、波斯语、葡萄牙语、罗马尼亚语、俄语、西班牙语、瑞典语、土耳其语和泰语";
-		obj.setContent(content);
+//		String content = "["+DateUtil.formatDateTimeStr(begintime)+"]"+"Elasticsearch 是一个分布式可扩展的实时搜索和分析引擎。它能帮助你搜索、分析和浏览数据，而往往大家并没有在某个项目一开始就预料到需要这些功能。Elasticsearch 之所以出现就是为了重新赋予硬盘中看似无用的原始数据新的活力。Elasticsearch 为很多世界流行语言提供良好的、简单的、开箱即用的语言分析器集合：阿拉伯语、亚美尼亚语、巴斯克语、巴西语、保加利亚语、加泰罗尼亚语、中文、捷克语、丹麦、荷兰语、英语、芬兰语、法语、加里西亚语、德语、希腊语、北印度语、匈牙利语、印度尼西亚、爱尔兰语、意大利语、日语、韩国语、库尔德语、挪威语、波斯语、葡萄牙语、罗马尼亚语、俄语、西班牙语、瑞典语、土耳其语和泰语";
+//		obj.setContent(content);
 		return obj;
 	}
 	public static void write1() throws Exception{
@@ -127,13 +131,21 @@ public class ElasticsearchRestTest {
 		System.out.println(result);
 	}
 	public static void main(String[] args) throws Exception {
-//		write1();
+		write1();
 		System.out.println("---------------------------------------------------------------------------------");
 //		read1();
 //		read2();
 		System.out.println("---------------------------------------------------------------------------------");
-		read21();
+//		read21();
 //		read22();
+//		Date date=DateUtil.formatDate("2018-05-02");
+		Date date1=DateUtil.formatDate("2018-05-02 00:00:00");
+		Date date2=DateUtil.formatDateTime("2018-05-02 10:39:27");
+		JSONObject obj = new JSONObject();
+		obj.put("date1", date1);
+		obj.put("date2", date2);
+		String result = JSON.toJSONString(obj, SerializerFeature.UseISO8601DateFormat);
+		System.out.println(result);
 		System.out.println("---------------------------------------------------------------------------------");
 		System.exit(1);
 	}
