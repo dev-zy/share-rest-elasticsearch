@@ -28,7 +28,7 @@ public class ElasticsearchRestTest {
 		obj.setName("title "+let+" "+StringUtil.random(3));
 		obj.setImei("138"+StringUtil.random(8));
 		obj.setArray(new String[]{let,StringUtil.random(2)});
-		obj.setEmail(StringUtil.digit(5)+"@ukelink.com");
+		obj.setEmail(StringUtil.letter(5)+"@ukelink.com");
 		obj.setBegintime(begintime);
 		obj.setCreatetime(today);
 		obj.setFlag(random.nextInt()%2==0);
