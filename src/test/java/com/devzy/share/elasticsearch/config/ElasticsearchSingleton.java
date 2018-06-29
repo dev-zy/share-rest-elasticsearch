@@ -1,12 +1,12 @@
-package com.ucloudlink.css.elasticsearch.config;
+package com.devzy.share.elasticsearch.config;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 
-import com.ucloudlink.css.elasticsearch.rest.ElasticsearchHighRestFactory;
-import com.ucloudlink.css.util.StringUtil;
+import com.devzy.share.elasticsearch.rest.ElasticsearchHighRestFactory;
+import com.devzy.share.util.StringUtil;
 /**
  * 描述: Elasticsearch初始化实例
  * 时间: 2018年1月9日 上午11:18:20

@@ -1,4 +1,4 @@
-package com.ucloudlink.css.util;
+package com.devzy.share.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

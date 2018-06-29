@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.ucloudlink.css</groupId>
-	<artifactId>css-rest-elasticsearch</artifactId>
+	<groupId>com.devzy.share</groupId>
+	<artifactId>share-rest-elasticsearch</artifactId>
 	<version>6.2.2.1</version>
-	<name>css-rest-elasticsearch</name>
-	<description>css-rest-elasticsearch</description>
+	<name>share-rest-elasticsearch</name>
+	<description>share-rest-elasticsearch</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<java.encoding>UTF-8</java.encoding>
@@ -22,15 +22,15 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>https://github.com/dev-share/css-rest-elasticsearch</url>
-		<connection>scm:git:git@github.com:dev-share/css-rest-elasticsearch.git</connection>
-		<developerConnection>scm:git:git@github.com:dev-share/css-rest-elasticsearch.git</developerConnection>
+		<url>https://github.com/dev-share/share-rest-elasticsearch</url>
+		<connection>scm:git:git@github.com:dev-share/share-rest-elasticsearch.git</connection>
+		<developerConnection>scm:git:git@github.com:dev-share/share-rest-elasticsearch.git</developerConnection>
 	</scm>
 	<developers>
 		<developer>
 			<name>Kervin</name>
 			<email>yi.zhang@ucloudlink.com</email>
-			<url>https://github.com/dev-share/css-rest-elasticsearch</url>
+			<url>https://github.com/dev-share/share-rest-elasticsearch</url>
 		</developer>
 	</developers>
 	<dependencies>

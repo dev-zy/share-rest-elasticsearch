@@ -1,4 +1,4 @@
-package com.ucloudlink.css.elasticsearch.pojo;
+package com.devzy.share.elasticsearch.pojo;
 
 import java.io.Serializable;
 import java.util.Date;

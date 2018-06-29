@@ -1,4 +1,4 @@
-package com.ucloudlink.css.util;
+package com.devzy.share.util;
 
 public class NumberUtil {
 	public static boolean isNumber(String target){

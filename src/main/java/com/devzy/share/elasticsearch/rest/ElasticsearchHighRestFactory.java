@@ -1,4 +1,4 @@
-package com.ucloudlink.css.elasticsearch.rest;
+package com.devzy.share.elasticsearch.rest;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,16 +16,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
+import org.elasticsearch.client.RestHighLevelClient;
 
-import com.ucloudlink.css.util.StringUtil;
+import com.devzy.share.util.StringUtil;
 
-public class ElasticsearchRestFactory{
+public class ElasticsearchHighRestFactory{
 	private static Logger logger = LogManager.getLogger();
 	private static int DEFAULT_PORT = 9200;
 	private static String DEFAULT_CLUSTERNAME = "elasticsearch";
 	private static String DEFAULT_SERVERS = "localhost";
 	
-	private RestClient client=null;
+	private RestClient client = null;
+	private RestHighLevelClient hclient=null;
 	
 	private String clusterName;
 	private String servers;
@@ -33,29 +35,28 @@ public class ElasticsearchRestFactory{
 	private String password;
 	private int port;
 	
-	public ElasticsearchRestFactory() {
+	public ElasticsearchHighRestFactory() {
 		this(DEFAULT_SERVERS,DEFAULT_PORT);
 	}
-	public ElasticsearchRestFactory(String servers) {
+	public ElasticsearchHighRestFactory(String servers) {
 		this(servers,DEFAULT_PORT);
 	}
-	public ElasticsearchRestFactory(String servers,int port) {
+	public ElasticsearchHighRestFactory(String servers,int port) {
 		this(DEFAULT_CLUSTERNAME,servers,port);
 	}
-	public ElasticsearchRestFactory(String clusterName, String servers,int port) {
+	public ElasticsearchHighRestFactory(String clusterName, String servers,int port) {
 		this(clusterName,servers,null,null,port);
 	}
-	public ElasticsearchRestFactory(String clusterName, String servers, String username, String password) {
+	public ElasticsearchHighRestFactory(String clusterName, String servers, String username, String password) {
 		this(clusterName,servers,null,null,DEFAULT_PORT);
 	}
-	public ElasticsearchRestFactory(String clusterName, String servers, String username, String password,int port) {
+	public ElasticsearchHighRestFactory(String clusterName, String servers, String username, String password,int port) {
 		this.clusterName = clusterName;
 		this.servers = servers;
 		this.username = username;
 		this.password = password;
 		this.port = port>0?port:DEFAULT_PORT;
 	}
-
 	public String getClusterName() {
 		return clusterName;
 	}
@@ -105,13 +106,7 @@ public class ElasticsearchRestFactory{
 			}
 			HttpHost[] hosts = new HttpHost[list.size()];
 			list.toArray(hosts);
- 			RestClientBuilder builder = RestClient.builder(hosts);
-// 			if(!StringUtil.isEmpty(username)&&!StringUtil.isEmpty(password)){
-//				String auth = username+":"+password;
-//				String authorization = "Basic "+new String(Base64.encodeBase64(auth.getBytes()));
-//				Header[] headers = new Header[]{new BasicHeader("Authorization", authorization)};
-//				builder.setDefaultHeaders(headers);
-//			}
+			RestClientBuilder builder = RestClient.builder(hosts);
  			builder.setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
  	            @Override
  	            public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder config) {
@@ -134,6 +129,7 @@ public class ElasticsearchRestFactory{
  	        });
  			builder.setMaxRetryTimeoutMillis(60*1000);
  			client = builder.build();
+ 			hclient = new RestHighLevelClient(builder);
 		} catch (Exception e) {
 			logger.error("-----Elasticsearch Config init Error-----", e);
 		}
@@ -147,7 +143,10 @@ public class ElasticsearchRestFactory{
 			}
 		}
 	}
-	public RestClient getClient(){
+	public RestClient client(){
 		return client;
+	}
+	public RestHighLevelClient hclient(){
+		return hclient;
 	}
 }

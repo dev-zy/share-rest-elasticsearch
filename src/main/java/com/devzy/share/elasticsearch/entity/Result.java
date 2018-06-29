@@ -1,4 +1,4 @@
-package com.ucloudlink.css.elasticsearch.entity;
+package com.devzy.share.elasticsearch.entity;
 
 import java.util.Date;
 

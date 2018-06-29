@@ -1,4 +1,4 @@
-package com.ucloudlink.css.elasticsearch.api;
+package com.devzy.share.elasticsearch.api;
 
 import java.util.Date;
 import java.util.List;
@@ -31,8 +31,8 @@ import org.elasticsearch.search.sort.SortOrder;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ucloudlink.css.elasticsearch.config.ElasticsearchSingleton;
-import com.ucloudlink.css.util.StringUtil;
+import com.devzy.share.elasticsearch.config.ElasticsearchSingleton;
+import com.devzy.share.util.StringUtil;
 
 public class HighRestElasticsearch {
 //	private static Logger logger = LogManager.getLogger();

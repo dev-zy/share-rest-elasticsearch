@@ -1,4 +1,4 @@
-package com.ucloudlink.css.elasticsearch.config;
+package com.devzy.share.elasticsearch.config;
 
 import java.io.IOException;
 import java.io.InputStream;

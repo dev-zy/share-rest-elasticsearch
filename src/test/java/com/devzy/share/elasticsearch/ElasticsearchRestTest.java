@@ -1,4 +1,4 @@
-package com.ucloudlink.css.elasticsearch;
+package com.devzy.share.elasticsearch;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -10,11 +10,11 @@ import java.util.Random;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.ucloudlink.css.elasticsearch.api.HighRestElasticsearch;
-import com.ucloudlink.css.elasticsearch.api.RestElasticsearch;
-import com.ucloudlink.css.elasticsearch.pojo.SampleEntity;
-import com.ucloudlink.css.util.DateUtil;
-import com.ucloudlink.css.util.StringUtil;
+import com.devzy.share.elasticsearch.api.HighRestElasticsearch;
+import com.devzy.share.elasticsearch.api.RestElasticsearch;
+import com.devzy.share.elasticsearch.pojo.SampleEntity;
+import com.devzy.share.util.DateUtil;
+import com.devzy.share.util.StringUtil;
 
 public class ElasticsearchRestTest {
 	private static RestElasticsearch factory = new RestElasticsearch();
